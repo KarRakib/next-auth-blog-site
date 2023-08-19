@@ -89,6 +89,7 @@ const Navbar = () => {
                                 </Link>
                                 <button
                                 type='button'
+                                className='mt-5 w-full black_btn'
                                 onClick={()=> {setToggleDrop(false);
                                 signOut();}}>
                                     Sign Out
