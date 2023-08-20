@@ -1,11 +1,12 @@
 'use client'
 import Image from 'next/image';
 import Link from 'next/link';
-import { singOut, signIn, getProviders, signOut } from 'next-auth/react';
+import { singOut, signIn, getProviders, signOut, useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
 const Navbar = () => {
-    const isUserLogin = true
+    // const isUserLogin = true
+    const{data:session} = useSession()
     const [providers, setProviders] = useState(null)
     const [toggleDrop, setToggleDrop] = useState(false)
     useEffect(() => {
@@ -24,7 +25,7 @@ const Navbar = () => {
             </Link>
             {/* navigation */}
             <div className='sm:flex hidden'>
-                {isUserLogin ? (
+                {session?.user ? (
                     <div className='flex gap-3 md:gap-5'>
                         <Link href='/create-prompt'>
                             Create Post
@@ -61,7 +62,7 @@ const Navbar = () => {
 
             {/* {Mobile Navigation} */}
             <div className='sm:hidden flex relative'>
-                {isUserLogin ? (
+                {session?.user? (
                     <div className='flex'>
                         <Image
                             src='https://i.ibb.co/jZrPF8p/kar-rakib-1.jpg'
